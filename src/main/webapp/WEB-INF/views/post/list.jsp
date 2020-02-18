@@ -24,25 +24,35 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+
 		<tr>
-			<td colspan="5" align="center">
-			<c:if test="${pageMaker.prev }">
-					<a href="${pageMaker.startPage-1 }">이전</a>
+			<td id="pagenate" colspan="5" align="center">
+				<c:if test="${pageMaker.prev }">
+					<a href="${pageMaker.startPage-1}">이전</a>
 				</c:if> 
-				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="i">
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage}" var="i">
 					<c:choose>
-						<c:when test="${pageMaker.cri.page==i }">${i }</c:when>
-						<c:otherwise><a href="${i }">${i }</a></c:otherwise>
+						<c:when test="${pageMaker.cri.page==i}">${i }</c:when>
+						<c:otherwise>
+							<a href="${i }">${i}</a>
+						</c:otherwise>
 					</c:choose>
-				</c:forEach> 
-				<c:if test="${pageMaker.next }">
+				</c:forEach>
+				 <c:if test="${pageMaker.next }">
 					<a href="${pageMaker.endPage+1 }">다음</a>
 				</c:if>
-				</td>
+			</td>
 		</tr>
+	</table>
 </div>
 
-<!-- <script src="/js/list.js"></script> -->
+<form id="jobForm">
+	<input type="hidden" name="page" value="${pageMaker.cri.page}" />
+	<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}" />
+	
+	
+</form>
+
+<script src="/js/list.js"></script>
 
 <%@include file="../include/footer.jsp"%>

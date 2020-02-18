@@ -2,7 +2,7 @@ package com.cos.blog.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,13 +42,20 @@ public class PostController {
 	
 	@GetMapping({"", "/", "/post"})
 	public String posts(@ModelAttribute("cri") Criteria cri, Model model) {
-		// model = RequestDispatcher + request.setAttribute
+		
 		int totalCount=postService.totalCount(cri);
+		
 		PageMaker pageMaker=new PageMaker();
+		
 		pageMaker.setCri(cri);
-		System.out.println(cri);
 		pageMaker.setTotalCount(totalCount);
-		System.out.println(totalCount);
+		
+		int page = cri.getPage();
+		int perPageNum = cri.getPerPageNum();
+		
+		cri.setStartPage((page-1)*perPageNum);
+		
+		System.out.println(cri);
 
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("posts", postService.목록보기(cri));

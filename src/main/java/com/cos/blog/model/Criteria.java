@@ -3,7 +3,34 @@ package com.cos.blog.model;
 public class Criteria {
 	private int page;
 	private int perPageNum;
+	private String type;
+	private String keyword;	
+	private int startPage;
 	
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public Criteria() {
 		this.page=1;
 		this.perPageNum=10;
