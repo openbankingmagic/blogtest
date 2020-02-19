@@ -4,9 +4,9 @@ public class Criteria {
 	private int page;
 	private int perPageNum;
 	private String type;
-	private String keyword;	
+	private String keyword;
 	private int startPage;
-	
+
 	public int getStartPage() {
 		return startPage;
 	}
@@ -32,33 +32,43 @@ public class Criteria {
 	}
 
 	public Criteria() {
-		this.page=1;
-		this.perPageNum=10;
+		this.page = 1;
+		this.perPageNum = 10;
 	}
-	
+
+	public Criteria(int page, int perPageNum) {
+		this.page = page;
+		this.perPageNum = perPageNum;
+	}
+
+	public String[] getTypeArr() {
+		return type == null ? new String[] {} : type.split("");
+	}
+
 	public void setPage(int page) {
-		if(page<=0) {
-			this.page=1;
+		if (page <= 0) {
+			this.page = 1;
 			return;
 		}
-		this.page=page;
+		this.page = page;
 	}
-	
+
 	public void setPerPageNum(int perPageNum) {
-		if(perPageNum<=0 || perPageNum>100) {
-			this.perPageNum=10;
+		if (perPageNum <= 0 || perPageNum > 100) {
+			this.perPageNum = 10;
 			return;
 		}
-		this.perPageNum=perPageNum;
+		this.perPageNum = perPageNum;
 	}
-	
+
 	public int getPage() {
 		return page;
 	}
-	
+
 	public int getPageStart() {
-		return (this.page-1)*perPageNum;
+		return (this.page - 1) * perPageNum;
 	}
+
 	public int getPerPageNum() {
 		return this.perPageNum;
 	}
@@ -67,5 +77,5 @@ public class Criteria {
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
-	
+
 }
